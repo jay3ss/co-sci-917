@@ -1,0 +1,709 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass article
+\begin_preamble
+% Variables to change every new document
+\newcommand{\hmwkClass}{CO SCI 917} % Course/class
+\newcommand{\hmwkNumber}{1} % Assignment number
+
+% Constants to set once
+\newcommand{\hmwkAuthorName}{Joshua Saunders} % Your name
+\newcommand{\hmwkUserID}{j3doe} % User ID
+\newcommand{\hmwkStudentNumber}{20400000} % Student number
+
+% Packages
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+
+% Margins
+\topmargin=-0.45in
+\evensidemargin=0in
+\oddsidemargin=0in
+\textwidth=6.5in
+\textheight=9.0in
+\headsep=0.25in
+
+% General document properties
+\linespread{1.1} % Line spacing
+\setlength\parindent{0pt} % Removes all indentation from paragraphs
+
+% Required to not count titlepage in page numbering
+\addtocounter {page} {-1}
+
+% Make a simple command for use in document body
+\newcommand{\start}{
+\maketitle
+\thispagestyle{empty}
+\newpage
+}
+
+% Set up the header and footer
+\pagestyle{fancy}
+\lhead{\hmwkAuthorName} % Top left header
+\rhead{\hmwkClass:\ Assignment\ \#\hmwkNumber}
+\lfoot{\lastxmark} % Bottom left footer
+\cfoot{} % Bottom center footer
+\rfoot{Page\ \thepage\ of\ \protect\pageref{LastPage}} % Bottom right footer
+\renewcommand\headrulewidth{0.4pt} % Size of the header rule
+\renewcommand\footrulewidth{0.4pt} % Size of the footer rule
+
+% The following 2 commands setup the title page
+\title{
+\vspace{2in}
+\textmd{\textbf{\hmwkClass:\ Assignment\ \#\hmwkNumber}}\\
+\normalsize\vspace{0.1in}\small{ \today }\\
+\vspace{3in}
+}
+
+\author{
+  \textbf{\hmwkAuthorName} \\
+  %\texttt{\hmwkUserID \hspace{0.1in}- \hmwkStudentNumber}
+}
+
+% Do not display standard date since we use a custom date
+\date{}
+\end_preamble
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 0
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip bigskip
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+start
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+3.
+ What is the sum of each pair of binary integers?
+\end_layout
+
+\begin_layout Description
+a.
+ 1010 1111 + 1101 1011 = 
+\series bold
+
+\begin_inset Formula $\boxed{1\text{ }1000\text{ }1010}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+b.
+ 1001 0111 + 1111 1111 = 
+\series bold
+
+\begin_inset Formula $\boxed{1\text{ }1001\text{ }0110}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+c.
+ 0111 0101 + 1010 1100 = 
+\series bold
+
+\begin_inset Formula $\boxed{1\text{ }0010\text{ }0001}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+4.
+ Calculate binary 00001101 minus 00000111.
+\end_layout
+
+\begin_layout Enumerate
+Convert 0000 0111 to the 2's complement which is 1111 1001
+\end_layout
+
+\begin_layout Enumerate
+Add the two numbers together
+\end_layout
+
+\begin_layout Standard
+0000 0111 + 1111 1001 = 
+\series bold
+
+\begin_inset Formula $\boxed{0000\text{ }0110}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+5.
+ How many bits are used by each of the following data types?
+\end_layout
+
+\begin_layout Description
+a.
+ word = 
+\series bold
+8 bits
+\end_layout
+
+\begin_layout Description
+b.
+ doubleword = 
+\series bold
+32 bits
+\end_layout
+
+\begin_layout Description
+c.
+ quadword = 
+\series bold
+64 bits
+\end_layout
+
+\begin_layout Description
+d.
+ double quadword = 
+\series bold
+128 bits
+\end_layout
+
+\begin_layout Subsection*
+6.
+ What is the minimum number of binary bits needed to represent each of the
+ following unsigned decimal integers?
+\end_layout
+
+\begin_layout Description
+a.
+ 4095
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\log_{2}4095\approx12$
+\end_inset
+
+ which means that 4095 requires a 
+\emph on
+minimum
+\emph default
+ of 
+\series bold
+12 bits
+\series default
+.
+\end_layout
+
+\begin_layout Description
+b.
+ 65534
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\log_{2}65534\approx16$
+\end_inset
+
+ which means that 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+65534
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ requires a 
+\emph on
+minimum
+\emph default
+ of 
+\series bold
+16 bits
+\series default
+.
+\end_layout
+
+\begin_layout Description
+c.
+ 42319
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $\log_{2}42319\approx15.369$
+\end_inset
+
+ which requires a 
+\emph on
+minimum
+\emph default
+ of 
+\series bold
+16 bits
+\series default
+.
+\end_layout
+
+\begin_layout Subsection*
+7.
+ What is the hexadecimal representation of each of the following binary
+ numbers?
+\end_layout
+
+\begin_layout Description
+a.
+ 0011 0101 1101 1010
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $0011\text{ }0101\text{ }1101\text{ }1010_{2}=\boxed{35\text{DA}_{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+b.
+ 1100 1110 1010 0011
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1100\text{ }1110\text{ }1010\text{ }0011_{2}=\boxed{\text{CEA}3_{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+c.
+ 1111 1110 1101 1011
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1111\text{ }1110\text{ }1101\text{ }1011_{2}=\boxed{\text{FEDB}_{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+8.
+ What is the binary representation of the following hexadecimal numbers?
+\end_layout
+
+\begin_layout Description
+a.
+ 0126F9D4
+\end_layout
+
+\begin_layout Description
+\begin_inset Formula $0126\text{F}9\text{D}4_{16}=\boxed{0000\text{ }0001\text{ }0010\text{ }0110\text{ }1111\text{ }1001\text{ }1101\text{ }0100_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+b.
+ 6ACDFA95
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $6\text{ACDFA}95_{16}=\boxed{\text{0110 1010 1100 1101 1111 1010 1001 0101}_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
+c.
+ F69BDC2A
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{F69BDC2A}_{16}=\boxed{\text{1111 0110 1001 1011 1101 1100 0010 1010}_{2}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection*
+9.
+ What is the unsigned decimal representation of each of the following hexadecima
+l integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 3A
+\end_layout
+
+\begin_layout Standard
+b.
+ 1BF
+\end_layout
+
+\begin_layout Standard
+c.
+ 1001
+\end_layout
+
+\begin_layout Subsection*
+10.
+ What is the unsigned decimal representation of each of the following hexadecima
+l integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 62
+\end_layout
+
+\begin_layout Standard
+b.
+ 4B3 
+\end_layout
+
+\begin_layout Subsection*
+11.
+ What is the 16-bit hexadecimal representation of each of the following
+ signed decimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ -24
+\end_layout
+
+\begin_layout Standard
+b.
+ -331
+\end_layout
+
+\begin_layout Subsection*
+12.
+ What is the 16-bit hexadecimal representation of each of the following
+ signed decimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ -21
+\end_layout
+
+\begin_layout Standard
+b.
+ -45
+\end_layout
+
+\begin_layout Subsection*
+13.
+ The following 16-bit hexadecimal numbers represent signed integers.
+ Convert each to decimal.
+\end_layout
+
+\begin_layout Standard
+a.
+ 6BF9
+\end_layout
+
+\begin_layout Standard
+b.
+ C123
+\end_layout
+
+\begin_layout Subsection*
+14.
+ The following 16-bit hexadecimal numbers represent signed integers.
+ Convert each to decimal.
+\end_layout
+
+\begin_layout Standard
+a.
+ 4CD2
+\end_layout
+
+\begin_layout Standard
+b.
+ 8230
+\end_layout
+
+\begin_layout Subsection*
+15.
+ What is the decimal representation of each of the following signed binary
+ numbers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 10110101
+\end_layout
+
+\begin_layout Standard
+b.
+ 0010101
+\end_layout
+
+\begin_layout Standard
+c.
+ 11110000
+\end_layout
+
+\begin_layout Subsection*
+13.
+ The following 16-bit hexadecimal numbers represent signed integers.
+ Convert each to decimal.
+\end_layout
+
+\begin_layout Standard
+a.
+ 6BF9
+\end_layout
+
+\begin_layout Standard
+b.
+ C123
+\end_layout
+
+\begin_layout Subsection*
+14.
+ The following 16-bit hexadecimal numbers represent signed integers.
+ Convert each to decimal.
+\end_layout
+
+\begin_layout Standard
+a.
+ 4CD2
+\end_layout
+
+\begin_layout Standard
+b.
+ 8230
+\end_layout
+
+\begin_layout Subsection*
+15.
+ What is the decimal representation of each of the following signed binary
+ numbers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 10110101
+\end_layout
+
+\begin_layout Standard
+b.
+ 00101010
+\end_layout
+
+\begin_layout Standard
+c.
+ 11110000
+\end_layout
+
+\begin_layout Subsection*
+16.
+ What is the decimal representation of each of the following signed binary
+ numbers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 10000000
+\end_layout
+
+\begin_layout Standard
+b.
+ 11001100
+\end_layout
+
+\begin_layout Standard
+c.
+ 10110111
+\end_layout
+
+\begin_layout Subsection*
+17.
+ What is the 8-bit binary (two’s-complement) representation of each of the
+ following signed decimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ -5
+\end_layout
+
+\begin_layout Standard
+b.
+ -42
+\end_layout
+
+\begin_layout Standard
+c.
+ -16
+\end_layout
+
+\begin_layout Subsection*
+18.
+ What is the 8-bit binary (two’s-complement) representation of each of the
+ following signed decimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ -72
+\end_layout
+
+\begin_layout Standard
+b.
+ -98
+\end_layout
+
+\begin_layout Standard
+c.
+ -26
+\end_layout
+
+\begin_layout Subsection*
+19.
+ What is the sum of each pair of hexadecimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 6B4 + 3FE
+\end_layout
+
+\begin_layout Standard
+b.
+ A49 + 6BD
+\end_layout
+
+\begin_layout Subsection*
+20.
+ What is the sum of each pair of hexadecimal integers?
+\end_layout
+
+\begin_layout Standard
+a.
+ 7C4 + 3BE
+\end_layout
+
+\begin_layout Standard
+b.
+ B69 + 7AD
+\end_layout
+
+\begin_layout Subsection*
+21.
+ What are the hexadecimal and decimal representations of the ASCII character
+ capital B
+\end_layout
+
+\begin_layout Subsection*
+22.
+ What are the hexadecimal and decimal representations of the ASCII character
+ capital G?
+\end_layout
+
+\end_body
+\end_document

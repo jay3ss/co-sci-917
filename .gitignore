@@ -1,0 +1,20 @@
+# Ignore PDFs
+
+*.pdf
+
+# Ignore the unzipped Irvine files
+downloads/Irvine/
+
+# 
+
+# Temporary files
+*~
+
+# Temporary #*.lyx# files
+\#*#
+
+# Assembler
+*.exe
+*.o
+*.obj
+*.bc
