@@ -431,19 +431,40 @@ c.
 l integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  3A
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $\text{3A}_{16}=3\times16^{1}+10\times16^{0}=48+10=\boxed{58_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
  1BF
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $\text{1BF}_{16}=1\times16^{2}+11\times16^{1}+15\times16^{0}=256+176+15=\boxed{447_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 c.
  1001
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1001_{16}=1\times16^{3}+0\times16^{2}+0\times16^{1}+1\times16^{0}=\boxed{4097_{10}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -452,14 +473,28 @@ c.
 l integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  62
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $62_{16}=6\times16^{1}+2\times16^{0}=\boxed{98_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
- 4B3 
+ 4B3
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{4B3}_{16}=4\times16^{2}+11\times16^{1}+3\times16^{0}=\boxed{1203_{10}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -468,14 +503,28 @@ b.
  signed decimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  -24
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $24_{10}=0000\,0000\,0001\,1000_{2}\rightarrow-24_{10}=1111\,1111\,1110\,1000_{2}=\boxed{\text{FFE8}_{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
  -331
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $331_{10}=0000\,0001\,0100\,1011_{2}\rightarrow-331_{10}=1111\,1110\,1011\,0101_{2}=\boxed{\text{FEB5}_{16}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -484,14 +533,28 @@ b.
  signed decimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  -21
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $21_{10}=0000\,0000\,0001\,0101_{2}\rightarrow-21=1111\,1111\,1110\,1011_{2}=\boxed{\text{FFEB}_{16}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
  -45
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $45_{10}=0000\,0000\,0010\,1101_{2}\rightarrow-45_{10}=1111\,1111\,1101\,0011_{2}=\boxed{\text{FFD3}_{16}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -500,14 +563,61 @@ b.
  Convert each to decimal.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  6BF9
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $6\text{BF}9_{16}=0110\,1011\,1111\,1001_{2}=\boxed{27641_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because the binary representation of 
+\begin_inset Formula $6\text{BF}9_{16}$
+\end_inset
+
+ does not begin with a 
+\begin_inset Formula $1$
+\end_inset
+
+, we know that the signed number is positive and can directly be converted
+ to a decimal number.
+\end_layout
+
+\begin_layout Description
 b.
  C123
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{C123}_{16}=1100\,0001\,0010\,0001_{2}\rightarrow\text{2's complement}=0011\,1110\,1101\,1101_{2}=16093$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Because the binary representation of 
+\begin_inset Formula $\text{C123}_{16}$
+\end_inset
+
+ begins with a 
+\begin_inset Formula $1$
+\end_inset
+
+, we know that the signed number is negative and must be converted to the
+ 2's complement before being converted to a decimal number.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{C123}_{16}=\boxed{-16093_{10}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
