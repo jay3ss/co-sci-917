@@ -91,6 +91,7 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement H
 \paperfontsize default
 \spacing single
 \use_hyperref false
@@ -765,7 +766,7 @@ b.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $1100\,1100_{2}$
+\begin_inset Formula $1100\,1100_{2}\rightarrow0011\,0100_{2}=-\left(32+16+4\right)=\boxed{-52_{10}}$
 \end_inset
 
 
@@ -777,7 +778,7 @@ c.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $1011\,0111_{2}$
+\begin_inset Formula $1011\,0111_{2}\rightarrow0100\,1001_{2}=-\left(64+8+1\right)=\boxed{-73}$
 \end_inset
 
 
@@ -794,14 +795,35 @@ a.
  -5
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $5_{10}=0000\,0101_{2}\rightarrow\boxed{1111\,1011_{2}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 b.
  -42
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $42_{10}=0010\,1010_{2}\rightarrow\boxed{1101\,0110_{2}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 c.
  -16
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $16_{10}=0001\,0000_{2}\rightarrow\boxed{1111\,0000_{2}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -815,14 +837,35 @@ a.
  -72
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $72_{10}=0100\,1000_{2}\rightarrow\boxed{1011\,1000_{2}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 b.
  -98
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $98_{10}=0110\,0010_{2}\rightarrow\boxed{1001\,1110_{2}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 c.
  -26
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $26_{10}=0001\,1010_{2}\rightarrow\boxed{1110\,0110_{2}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -835,9 +878,23 @@ a.
  6B4 + 3FE
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $6\text{B}4_{16}+3\text{FE}_{16}=\boxed{\text{AB}2_{16}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 b.
  A49 + 6BD
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $\text{A}49_{16}+6\text{BD}_{16}=\boxed{1106_{16}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -850,21 +907,205 @@ a.
  7C4 + 3BE
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $7\text{C}4_{16}+3\text{BE}_{16}=\boxed{\text{B}82_{16}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Description
 b.
  B69 + 7AD
 \end_layout
 
+\begin_layout Standard
+\begin_inset Formula $\text{B}69_{16}+7\text{AD}_{16}=\boxed{1316_{16}}$
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsection*
 21.
  What are the hexadecimal and decimal representations of the ASCII character
- capital B
+ capital B?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Character
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hexadecimal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decimal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+B
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+42
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+66
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
 22.
  What are the hexadecimal and decimal representations of the ASCII character
  capital G?
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="2" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" bottomline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Character
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Hexadecimal
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Decimal
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+G
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+47
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+71
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \end_body
