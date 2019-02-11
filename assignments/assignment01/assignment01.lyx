@@ -163,10 +163,13 @@ start
 
 \begin_layout Description
 a.
- 1010 1111 + 1101 1011 = 
-\series bold
+ 1010 1111 + 1101 1011
+\end_layout
 
-\begin_inset Formula $\boxed{1\text{ }1000\text{ }1010}$
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula $1010\,1111_{2}+1101\,1011_{2}=\boxed{1\text{ }1000\text{ }1010_{2}}$
 \end_inset
 
 
@@ -174,10 +177,13 @@ a.
 
 \begin_layout Description
 b.
- 1001 0111 + 1111 1111 = 
-\series bold
+ 1001 0111 + 1111 1111
+\end_layout
 
-\begin_inset Formula $\boxed{1\text{ }1001\text{ }0110}$
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula $1001\,0111_{2}+1111\,1111_{2}=\boxed{1\text{ }1001\text{ }0110_{2}}$
 \end_inset
 
 
@@ -185,10 +191,13 @@ b.
 
 \begin_layout Description
 c.
- 0111 0101 + 1010 1100 = 
-\series bold
+ 0111 0101 + 1010 1100
+\end_layout
 
-\begin_inset Formula $\boxed{1\text{ }0010\text{ }0001}$
+\begin_layout Standard
+
+\series bold
+\begin_inset Formula $0111\,0101_{2}+1010\,1100_{2}=\boxed{1\text{ }0010\text{ }0001_{2}}$
 \end_inset
 
 
@@ -208,10 +217,9 @@ Add the two numbers together
 \end_layout
 
 \begin_layout Standard
-0000 0111 + 1111 1001 = 
-\series bold
 
-\begin_inset Formula $\boxed{0000\text{ }0110}$
+\series bold
+\begin_inset Formula $0000\,0111_{2}+1111\,1001_{2}=\boxed{0000\text{ }0110_{2}}$
 \end_inset
 
 
@@ -262,7 +270,7 @@ a.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\log_{2}4095\approx12$
+\begin_inset Formula $\text{ceiling}\left(\log_{2}4095_{10}\right)\approx12$
 \end_inset
 
  which means that 4095 requires a 
@@ -281,8 +289,8 @@ b.
  65534
 \end_layout
 
-\begin_layout Description
-\begin_inset Formula $\log_{2}65534\approx16$
+\begin_layout Standard
+\begin_inset Formula $\text{ceiling}\left(\log_{2}65534_{10}\right)=16$
 \end_inset
 
  which means that 
@@ -327,11 +335,11 @@ c.
  42319
 \end_layout
 
-\begin_layout Description
-\begin_inset Formula $\log_{2}42319\approx15.369$
+\begin_layout Standard
+\begin_inset Formula $\text{ceiling}\left(\log_{2}42319_{10}\right)=16$
 \end_inset
 
- which requires a 
+ which means that 42319 requires a 
 \emph on
 minimum
 \emph default
@@ -394,7 +402,7 @@ a.
  0126F9D4
 \end_layout
 
-\begin_layout Description
+\begin_layout Standard
 \begin_inset Formula $0126\text{F}9\text{D}4_{16}=\boxed{0000\text{ }0001\text{ }0010\text{ }0110\text{ }1111\text{ }1001\text{ }1101\text{ }0100_{2}}$
 \end_inset
 
@@ -594,7 +602,7 @@ b.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Formula $\text{C123}_{16}=1100\,0001\,0010\,0001_{2}\rightarrow\text{2's complement}=0011\,1110\,1101\,1101_{2}=16093$
+\begin_inset Formula $\text{C123}_{16}=1100\,0001\,0010\,0001_{2}\rightarrow\text{2's complement}=0011\,1110\,1101\,1101_{2}=16093_{10}$
 \end_inset
 
 
@@ -626,14 +634,69 @@ Because the binary representation of
  Convert each to decimal.
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  4CD2
 \end_layout
 
 \begin_layout Standard
+The first hexadecimal digit 
+\begin_inset Formula $4\text{CD}2_{16}$
+\end_inset
+
+ is 
+\begin_inset Formula $4_{16}$
+\end_inset
+
+ which is less than 8, therefore, 
+\begin_inset Formula $4\text{CD}2_{16}$
+\end_inset
+
+ is positive.
+ Its decimal representation is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $4\times16^{3}+12\times16^{2}+13\times16^{1}+2\times16^{0}=16384+3072+208+2=\boxed{19666_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
  8230
+\end_layout
+
+\begin_layout Standard
+The first hexadecimal digit of 
+\begin_inset Formula $8230_{16}$
+\end_inset
+
+ is 8 which is greater than or equal to 8, therefore, 
+\begin_inset Formula $8230_{16}$
+\end_inset
+
+ is negative.
+ Its binary representation is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $8230_{16}=1000\,0010\,0011\,0000_{2}$
+\end_inset
+
+ and its 2's complement is 
+\begin_inset Formula $0111\,1101\,1101\,0000_{2}=7\text{DD}0_{16}$
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $7\text{DD}0_{16}=-\left(7\times16^{3}+13\times16^{2}+13\times16^{1}+0\right)=-\left(28672+3328+208\right)=\boxed{-32208_{10}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -642,72 +705,40 @@ b.
  numbers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  10110101
 \end_layout
 
 \begin_layout Standard
-b.
- 0010101
+\begin_inset Formula $1011\,0101_{2}\rightarrow0100\,1011_{2}=4\text{B}_{16}=-\left(4\times16^{1}+11\times16^{0}\right)=-\left(64+11\right)=\boxed{-75_{10}}$
+\end_inset
+
+
 \end_layout
 
-\begin_layout Standard
-c.
- 11110000
-\end_layout
-
-\begin_layout Subsection*
-13.
- The following 16-bit hexadecimal numbers represent signed integers.
- Convert each to decimal.
-\end_layout
-
-\begin_layout Standard
-a.
- 6BF9
-\end_layout
-
-\begin_layout Standard
-b.
- C123
-\end_layout
-
-\begin_layout Subsection*
-14.
- The following 16-bit hexadecimal numbers represent signed integers.
- Convert each to decimal.
-\end_layout
-
-\begin_layout Standard
-a.
- 4CD2
-\end_layout
-
-\begin_layout Standard
-b.
- 8230
-\end_layout
-
-\begin_layout Subsection*
-15.
- What is the decimal representation of each of the following signed binary
- numbers?
-\end_layout
-
-\begin_layout Standard
-a.
- 10110101
-\end_layout
-
-\begin_layout Standard
+\begin_layout Description
 b.
  00101010
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $0010\,1010_{2}=32+8+2=\boxed{42_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 c.
  11110000
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1111\,0000_{2}\rightarrow0001\,0000_{2}=\boxed{-16_{10}}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -716,19 +747,40 @@ c.
  numbers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  10000000
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $1000\,0000_{2}=\boxed{-128_{10}}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 b.
  11001100
 \end_layout
 
 \begin_layout Standard
+\begin_inset Formula $1100\,1100_{2}$
+\end_inset
+
+
+\end_layout
+
+\begin_layout Description
 c.
  10110111
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula $1011\,0111_{2}$
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection*
@@ -737,17 +789,17 @@ c.
  following signed decimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  -5
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 b.
  -42
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 c.
  -16
 \end_layout
@@ -758,17 +810,17 @@ c.
  following signed decimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  -72
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 b.
  -98
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 c.
  -26
 \end_layout
@@ -778,12 +830,12 @@ c.
  What is the sum of each pair of hexadecimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  6B4 + 3FE
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 b.
  A49 + 6BD
 \end_layout
@@ -793,12 +845,12 @@ b.
  What is the sum of each pair of hexadecimal integers?
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 a.
  7C4 + 3BE
 \end_layout
 
-\begin_layout Standard
+\begin_layout Description
 b.
  B69 + 7AD
 \end_layout
