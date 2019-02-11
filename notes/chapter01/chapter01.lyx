@@ -28,9 +28,22 @@
 \output_sync 0
 \bibtex_command default
 \index_command default
+\float_placement h
 \paperfontsize default
 \spacing single
-\use_hyperref false
+\use_hyperref true
+\pdf_title "Notes on Intel x86 Assembly Language"
+\pdf_author "Joshua Saunders"
+\pdf_subject "assembly language, intel, x86"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
 \papersize default
 \use_geometry false
 \use_package amsmath 1
@@ -227,21 +240,33 @@ Level 1
 \end_layout
 
 \begin_layout Itemize
-Instruction Set Architecture (Level 2): instruction set to carry out basic
- operations (move, add, multiply) which is also known as machine language.
+
+\emph on
+Instruction Set Architecture (Level 2)
+\emph default
+: instruction set to carry out basic operations (move, add, multiply) which
+ is also known as machine language.
  Each instruction is executed directly by the computer's hardware or by
  a program embedded in microprocessor called a microprogram.
 \end_layout
 
 \begin_layout Itemize
-Assembly Language (Level 3): Assembly language uses short mnemonics such
- as ADD, MOV, or SUB which are translated to the ISA level.
+
+\emph on
+Assembly Language (Level 3)
+\emph default
+: Assembly language uses short mnemonics such as ADD, MOV, or SUB which
+ are translated to the ISA level.
  Assembly language programs are entirely translated to machine language
  before they are executed.
 \end_layout
 
 \begin_layout Itemize
-High-Level Languages (Level 4): Programs at level 4 are translated into
+
+\emph on
+High-Level Languages (Level 4)
+\emph default
+: Programs at level 4 are translated into
 \backslash
  assembly language instructions.
  Examples of languages at this level are Java, C++, and C.
@@ -340,6 +365,509 @@ translation
 
 \begin_layout Section
 Data Representation
+\end_layout
+
+\begin_layout Standard
+Data in computer can be represented in binary, octal, decimal, or hexadecimal.
+\end_layout
+
+\begin_layout Subsection
+Binary Integers
+\end_layout
+
+\begin_layout Standard
+Binary integers, or bits, represent 
+\emph on
+on
+\emph default
+ and 
+\emph on
+off
+\emph default
+, or 
+\emph on
+true
+\emph default
+ and 
+\emph on
+false
+\emph default
+.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:binary-number"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows an example of a binary number with the most significant bit (MSB)
+ and least significant bit (LSB) marked.
+ Binary numbers can also be 
+\emph on
+signed
+\emph default
+ or 
+\emph on
+unsigned
+\emph default
+.
+ An unsigned number can be only be positive while a signed number can be
+ either positive or negative.
+ A signed binary number that starts with a 
+\begin_inset Formula $1$
+\end_inset
+
+ is considered to be negative while a signed binary number that begins with
+ a 
+\begin_inset Formula $0$
+\end_inset
+
+ is considered to be positive.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename binary_number.PNG
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Binary number with the most significant bit (MSB) and least significant
+ bit (LSB) marked
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:binary-number"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To calculate the number of bits a decimal number will occupy, you can use
+ Equation 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "eq:calculate-number-of-bits-for-binary-number"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+
+\begin_inset Formula 
+\begin{equation}
+b=\text{ceiling}\left(\log_{2}\left(n\right)\right)\label{eq:calculate-number-of-bits-for-binary-number}
+\end{equation}
+
+\end_inset
+
+where 
+\begin_inset Formula $b$
+\end_inset
+
+ is the number of bits and 
+\begin_inset Formula $n$
+\end_inset
+
+ is the number in base 10.
+\end_layout
+
+\begin_layout Subsubsection
+Binary Addition
+\end_layout
+
+\begin_layout Standard
+To add two binary numbers, start with the LSB of each number and add them.
+ Next add the number to the left remembering to add the carry from the preceding
+ calculation if there was one.
+ Continue this process until all number of been add.
+\end_layout
+
+\begin_layout Subsubsection
+Integer Storage Sizes
+\end_layout
+
+\begin_layout Standard
+The basic storage unit for all x86 computers is the 
+\emph on
+byte
+\emph default
+, which is 8 bits.
+ Table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:range-of-unsigned-integers"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the number of bits required for the different possible values for
+ unsigned integers.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Storage size (in bits) and range for each type of unsigned integer
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:range-of-unsigned-integers"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Name
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Size (bits)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Range
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+byte
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+8
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0\text{ to }2^{8}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+word
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+16
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0\text{ to }2^{16}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+doubleword
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+32
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0\text{ to }2^{32}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+quadword
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+64
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0\text{ to }2^{64}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+double quadword
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+128
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $0\text{ to }2^{128}-1$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Hexadecimal Integers
+\end_layout
+
+\begin_layout Standard
+Similar to decimal, except 16 is used as the base.
+ This means that the digits 0 to 9 are still used, but to represent numbers
+ 10 to 15 we use A to F, respectively.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+ASCII
+\series default
+ (American Standard Code Information Interchange) uses a unique 7-bit integer
+ assigned to each character.
+ The lower 7 bits of every byte is used to represent characters which allows
+ proprietary character sets to be created using the remaining bit in each
+ byte.
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+ANSI Character Set
+\series default
+ 
+\end_layout
+
+\begin_layout Subsection
+Character Storage
+\end_layout
+
+\begin_layout Standard
+A 
+\emph on
+character set
+\emph default
+ is used to represent characters by mapping characters to integers.
+\end_layout
+
+\begin_layout Subsection
+Terms and Definitions
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+most significant bit (MSB)
+\emph default
+: the bit that is furthest to the left of a binary number
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+least significant bit (LSB)
+\emph default
+: the bit that is furthest to the right of a binary number
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+unsigned number
+\emph default
+: a number that can be only be positive
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+signed number
+\emph default
+: a number that can be either positive or negative
+\end_layout
+
+\begin_layout Itemize
+
+\emph on
+character set
+\emph default
+: a mapping of characters to integers
+\end_layout
+
+\begin_layout Section
+Boolean Expressions
+\end_layout
+
+\begin_layout Standard
+This a review of boolean values, operations, and of trutch tables from digital
+ logic.
 \end_layout
 
 \end_body
