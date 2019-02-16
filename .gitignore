@@ -18,3 +18,6 @@ downloads/Irvine/
 *.o
 *.obj
 *.bc
+
+# Ignore any downloaded presentations
+presentations/
