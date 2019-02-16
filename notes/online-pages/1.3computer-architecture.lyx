@@ -1,0 +1,583 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing onehalf
+\use_hyperref true
+\pdf_title "Notes on Intel x86 Assembly Language"
+\pdf_author "Joshua Saunders"
+\pdf_subject "computer architecture"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.75in
+\rightmargin 0.75in
+\bottommargin 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Computer Architecture
+\end_layout
+
+\begin_layout Section
+Basic Computer Architecture
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:basic-architecture-of-every-computer"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows the basic architecture of every computer.
+ Each computer has a
+\end_layout
+
+\begin_layout Itemize
+microprocessor: brain of the computer, all calculations and decision making
+ are performed here
+\end_layout
+
+\begin_layout Itemize
+memory (RAM)
+\end_layout
+
+\begin_layout Itemize
+and IO devices
+\end_layout
+
+\begin_layout Standard
+Computers function based on a concept called the 
+\emph on
+stored program concept
+\emph default
+ which means that a program is stored in the computer's memory.
+ A program is a collection of instructions.
+ The microprocessor fetches the instructions one at a time from memory and
+ then executes it.
+ It then sends the results of the instructions to the output device.
+ The microprocessor does this continuously in a loop until the program is
+ finished
+\end_layout
+
+\begin_layout Enumerate
+Fetch an instruction from memory
+\end_layout
+
+\begin_layout Enumerate
+Decode the instruction
+\end_layout
+
+\begin_layout Enumerate
+Execute the instruction
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-computer-architecture.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Basic architecture of every computer
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:basic-architecture-of-every-computer"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+A few things to understand about memory
+\end_layout
+
+\begin_layout Itemize
+contains millions of memory cells, each with the capacity of one byte
+\end_layout
+
+\begin_layout Itemize
+each memory cell has a unique address that can be address individually
+\end_layout
+
+\begin_layout Itemize
+only two operations are possible
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+reading the contents
+\end_layout
+
+\begin_layout Enumerate
+writing (storing) something
+\end_layout
+
+\begin_deeper
+\begin_layout Itemize
+every time the microprocessor writes to or read from a memory cell, it must
+ supply the address of that cell
+\end_layout
+
+\begin_layout Itemize
+when the microprocessor writes to a memory cell, the previous will be overwritte
+n with the new data
+\end_layout
+
+\end_deeper
+\end_deeper
+\begin_layout Section
+The Microprocessor
+\end_layout
+
+\begin_layout Standard
+Every microprocessor contains an arithmetic and logical unit (ALU), control
+ unit (CU), registers, instruction register, and a program counter.
+\end_layout
+
+\begin_layout Itemize
+arithmetic and logic unit: where the mathematical and logical operations
+ are performed
+\end_layout
+
+\begin_layout Itemize
+control unit: brain of the microprocessor.
+ Directs traffic between the different components of the microprocessor
+\end_layout
+
+\begin_layout Itemize
+registers: like local memory cells inside of the microprocessor which hold
+ the results of many of the operations (mathematical and logical) before
+ they're sent to the memory.
+ Microprocessors usually have a few registers
+\end_layout
+
+\begin_layout Itemize
+instruction register: holds the instruction that is currently being executed
+\end_layout
+
+\begin_layout Itemize
+program counter: register that holds the memory address of the next memory
+ cell in RAM, which is being accessed
+\end_layout
+
+\begin_layout Standard
+A generic microprocessor is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:diagram-of-a-basic-microprocessor"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ below.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor.PNG
+	scale 65
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Diagram of a basic microprocessor
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:diagram-of-a-basic-microprocessor"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Processes of the Microprocessor
+\end_layout
+
+\begin_layout Subsection*
+Fetching an Instruction/Data from Memory
+\end_layout
+
+\begin_layout Standard
+The microprocessor must supply the address of the memory location that it's
+ going to grab an instruction or data from.
+ When memory receives the fetch request from the microprocessor (along with
+ the address) it sends the contents of that memory location to the microprocesso
+r.
+\end_layout
+
+\begin_layout Subsection*
+Executing an Instruction
+\end_layout
+
+\begin_layout Standard
+If the control unit finds the instruction in the library, then it fetches
+ a microinstruction from the library which tells the microprocessor what
+ to do with the instruction.
+\end_layout
+
+\begin_layout Section
+Example of How a Microprocessor Functions
+\end_layout
+
+\begin_layout Standard
+Here is an example of the microprocessor behaves when it fetches, decodes,
+ then executes instructions from memory.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-microprocessor-pic-01"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows our example microprocessor with some instructions already in memory.
+ In the memory cell, the leftmost column is the address of the memory and
+ rightmost column is the data at that location.
+ The instructions are stored in memory addresses 1 through 4 and the data
+ are stored in memory addresses 5 and 6.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor-example-pic-01.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Example microprocessor with instructions in memory
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-microprocessor-pic-01"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microprocessor first fetches and executes the first instruction (
+\family typewriter
+Load 5
+\family default
+) so that the microprocessor looks like Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-microprocessor-pic-02"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice that now
+\end_layout
+
+\begin_layout Itemize
+the instruction register contains the current instruction (
+\family typewriter
+Load 5
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+the program counter contains the address of the current instruction (
+\family typewriter
+1
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+register A holds the data (
+\family typewriter
+10
+\family default
+) from address 5
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor-example-pic-02.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Microprocessor after the first instruction is executed
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-microprocessor-pic-02"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microprocessor first fetches and executes the first instruction (
+\family typewriter
+Load 5
+\family default
+) so that the microprocessor looks like Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-microprocessor-pic-03"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice that now
+\end_layout
+
+\begin_layout Itemize
+the instruction register contains the current instruction (
+\family typewriter
+Add 6
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+the program counter contains the address of the current instruction (
+\family typewriter
+2
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+register A holds the data (
+\family typewriter
+30
+\family default
+) from the result of adding 10 and 20
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor-example-pic-03.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Microprocessor after the second instruction is executed
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-microprocessor-pic-03"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
