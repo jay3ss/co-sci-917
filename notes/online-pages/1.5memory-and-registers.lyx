@@ -1,0 +1,704 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass extbook
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing onehalf
+\use_hyperref true
+\pdf_title "Notes on Intel x86 Assembly Language"
+\pdf_author "Joshua Saunders"
+\pdf_subject "computer architecture"
+\pdf_bookmarks true
+\pdf_bookmarksnumbered false
+\pdf_bookmarksopen false
+\pdf_bookmarksopenlevel 2
+\pdf_breaklinks false
+\pdf_pdfborder false
+\pdf_colorlinks true
+\pdf_backref false
+\pdf_pdfusetitle true
+\papersize default
+\use_geometry true
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\leftmargin 0.75in
+\rightmargin 0.75in
+\bottommargin 0.5in
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Section
+Memory and Registers
+\end_layout
+
+\begin_layout Standard
+In this chapter, we'll take a detailed look at how the Intel microprocessor
+ functions.
+\end_layout
+
+\begin_layout Subsection
+Internal Memory
+\end_layout
+
+\begin_layout Standard
+Every computer has internal memory that is built into the motherboard, which
+ is fast.
+ There are two types of internal memory
+\end_layout
+
+\begin_layout Enumerate
+Random Access Memory (RAM):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+fast
+\end_layout
+
+\begin_layout Enumerate
+temporary (RAM is erased when the computer is turned off)
+\end_layout
+
+\begin_layout Enumerate
+the microprocessor can read and write to RAM
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Read Only Memory (ROM):
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+as fast as RAM
+\end_layout
+
+\begin_layout Enumerate
+permanent (ROM remains when the computer is turned off)
+\end_layout
+
+\begin_layout Enumerate
+the microprocessor can only read from ROM
+\end_layout
+
+\end_deeper
+\begin_layout Subsubsection
+RAM
+\end_layout
+
+\begin_layout Standard
+RAM holds the programs and data that the programs use.
+ Every program held in memory is divided into two sections:
+\end_layout
+
+\begin_layout Enumerate
+code segment (CS): contains the instructions or code of a program
+\end_layout
+
+\begin_layout Enumerate
+data segment (DS): contains the data associated with the program
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:memory-diagram-with-3-progs-running"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ shows a memory diagram with a microprocessor running three programs at
+ once.
+ The size of each segment may be about 64,000 bytes and if a program is
+ too large, then it may occupy more than one code segment.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename memory-diagram-with-3-progs-running.PNG
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Memory diagram with three programs run by a microprocessor
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:memory-diagram-with-3-progs-running"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+How the Code Segment Register Works with the Instruction Pointer
+\end_layout
+
+\begin_layout Standard
+Every time the microprocessor fetches an instruction from memory, it uses
+ the CS register and IP to find that instruction.
+ The CS holds the segment number and the IP holds the memory address within
+ that segment.
+ For example, the CS register may hold the value of 3 and the IP holds the
+ value of 126.
+ This means that the instruction is located in the 126
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+th
+\end_layout
+
+\end_inset
+
+ memory location in the third code segment.
+ Here's another example:
+\end_layout
+
+\begin_layout Standard
+The CS register contains the address 
+\family typewriter
+x099E
+\family default
+ and the IP contains the offset 
+\family typewriter
+x0052
+\family default
+.
+ 
+\series bold
+Important note
+\series default
+: before you add the contents of the CS register and IP, add a 
+\family typewriter
+0
+\family default
+ to the end of the address in the CS register.
+ Therefore, the address in the CS register is 
+\family typewriter
+x0099E
+\family default
+ and the address of the instruction is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="right" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x099E0
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x0052
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x09A42
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Paragraph*
+How the Data Segment Register Works with the Data Index Register
+\end_layout
+
+\begin_layout Standard
+Every time the microprocessor fetches data from memory, it uses the DS register
+ and Data Index (DI) to find that instruction.
+ The DS points to the data segment and the DI holds the points to a particular
+ location within that segment, acting as an offset.
+ For example, the DS register may hold the value of 3 and the DI holds the
+ value of 23.
+ This means that the instruction is located in the 23
+\begin_inset script superscript
+
+\begin_layout Plain Layout
+rd
+\end_layout
+
+\end_inset
+
+ memory location (byte) in the third data segment.
+ Here's another example:
+\end_layout
+
+\begin_layout Standard
+The CS register contains the address 
+\family typewriter
+x038E
+\family default
+ and the IP contains the offset 
+\family typewriter
+x0032
+\family default
+.
+ 
+\series bold
+Important note
+\series default
+: before you add the contents of the DS register and DI, add a 
+\family typewriter
+0
+\family default
+ to the end of the address in the DS register.
+ Therefore, the address in the DS register is 
+\family typewriter
+x0038E
+\family default
+ and the address of the instruction is
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="3" columns="2">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top" width="0pt">
+<column alignment="right" valignment="top" width="0pt">
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x0038E
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
++
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x0032
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="right" valignment="top" topline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\family typewriter
+x03912
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+The Stack
+\end_layout
+
+\begin_layout Standard
+Most computers run many programs in parallel at the same time.
+ Except not really.
+ It just appears that way.
+ What's really happening is that the computer is only running one program
+ at a time and from microsecond to microsecond is switching from running
+ one program to another.
+ This process of switching back and forth between execution of programs
+ happens so quickly that the human eye doesn't notice and interprets this
+ to be the computer executing multiple programs in parallel.
+ So, even though it appears as though the computer is executing programs
+ in parallel, it is actually only executing one at a time.
+\end_layout
+
+\begin_layout Standard
+In order to switch between different between the different programs, the
+ computer needs to remember the point at which each program as suspended.
+ That way, it can pick up where it left off when it returns to executing
+ that program.
+ For example, when switching between executing programs A and B, the computer
+ needs to remember exactly where it was in Program A when switching to Program
+ B and vice versa.
+\end_layout
+
+\begin_layout Standard
+The way that the microprocessor can 
+\begin_inset Quotes eld
+\end_inset
+
+remember
+\begin_inset Quotes erd
+\end_inset
+
+ the address of the instruction that it was executing immediately before
+ suspending Program A is by using something called the 
+\emph on
+stack
+\emph default
+.
+ The stack is a segment of memory that the microprocessor 
+\emph on
+pushes
+\emph default
+ (stores) the address of the next instruction of Program A (and all of the
+ temporary data) on to.
+ When the microprocessor returns to executing Program A, it 
+\emph on
+pops
+\emph default
+ (retrieves and removes) all the information from the stack and continues
+ to execute Program A.
+\end_layout
+
+\begin_layout Standard
+In addition to the code and data segments of memory for each program, there
+ is also a stack segment with a Stack Segment (SS) register and a Stack
+ Point (SP) register.
+ The SS register points to a particular segment of memory while the SP register
+ points to a particular byte with the stack segment.
+\end_layout
+
+\begin_layout Subsection
+General Purpose Registers
+\end_layout
+
+\begin_layout Standard
+Intel-based processors contain general purpose registers A, B, C, and D,
+ each 32 bits (4 bytes) long.
+ An example of Register A is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:examining-register-a"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+ below.
+\end_layout
+
+\begin_layout Itemize
+use the symbol 
+\family typewriter
+AL
+\family default
+ to access the lower one byte
+\end_layout
+
+\begin_layout Itemize
+use the symbol 
+\family typewriter
+AH
+\family default
+ to access the upper one byte
+\end_layout
+
+\begin_layout Itemize
+use the symbol 
+\family typewriter
+AX
+\family default
+ to access the first 16 bits
+\end_layout
+
+\begin_layout Itemize
+use the symbol 
+\family typewriter
+EAX
+\family default
+ to access the entire 32 bits
+\end_layout
+
+\begin_layout Standard
+The above conventions work the registers B, C, and D.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename examining-register-a2.PNG
+	scale 75
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Though Register A is 4 bytes long, you can still access individual parts
+ of it
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:examining-register-a"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Flag Register
+\end_layout
+
+\begin_layout Standard
+The flag register is a 16 bit register that the microprocessor updates after
+ the execution of every instruction.
+ Each bit represents 
+\begin_inset Quotes eld
+\end_inset
+
+something.
+\begin_inset Quotes erd
+\end_inset
+
+ For example, if the microprocessor performs some calculation and the result
+ is zero, then the bit that represents the 
+\begin_inset Quotes eld
+\end_inset
+
+Zero Flag
+\begin_inset Quotes erd
+\end_inset
+
+ will be set to 1, otherwise it is 0.
+ There are many other flags that are described on page 18 of the book.
+\end_layout
+
+\end_body
+\end_document

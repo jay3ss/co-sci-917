@@ -93,11 +93,11 @@
 
 \begin_body
 
-\begin_layout Chapter
+\begin_layout Section
 Computer Architecture
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Basic Computer Architecture
 \end_layout
 
@@ -230,7 +230,7 @@ n with the new data
 
 \end_deeper
 \end_deeper
-\begin_layout Section
+\begin_layout Subsection
 The Microprocessor
 \end_layout
 
@@ -320,11 +320,11 @@ name "fig:diagram-of-a-basic-microprocessor"
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Processes of the Microprocessor
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Fetching an Instruction/Data from Memory
 \end_layout
 
@@ -336,7 +336,7 @@ The microprocessor must supply the address of the memory location that it's
 r.
 \end_layout
 
-\begin_layout Subsection*
+\begin_layout Paragraph*
 Executing an Instruction
 \end_layout
 
@@ -346,7 +346,7 @@ If the control unit finds the instruction in the library, then it fetches
  to do with the instruction.
 \end_layout
 
-\begin_layout Section
+\begin_layout Subsection
 Example of How a Microprocessor Functions
 \end_layout
 
@@ -496,9 +496,9 @@ name "fig:example-microprocessor-pic-02"
 \end_layout
 
 \begin_layout Standard
-The microprocessor first fetches and executes the first instruction (
+The microprocessor fetches and executes the second instruction (
 \family typewriter
-Load 5
+Add 6
 \family default
 ) so that the microprocessor looks like Figure 
 \begin_inset CommandInset ref
@@ -563,6 +563,191 @@ Microprocessor after the second instruction is executed
 \begin_inset CommandInset label
 LatexCommand label
 name "fig:example-microprocessor-pic-03"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microprocessor fetches and executes the third instruction (
+\family typewriter
+Load 5
+\family default
+) so that the microprocessor looks like Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-microprocessor-pic-04"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice that now
+\end_layout
+
+\begin_layout Itemize
+the instruction register contains the current instruction (
+\family typewriter
+Store 7
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+the program counter contains the address of the current instruction (
+\family typewriter
+3
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+register A still holds the data (
+\family typewriter
+30
+\family default
+) from the result of adding 10 and 20
+\end_layout
+
+\begin_layout Itemize
+memory address 7 now holds the data (
+\family typewriter
+30
+\family default
+) from the result of adding 10 and 20
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor-example-pic-04.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Microprocessor after the third instruction is executed
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-microprocessor-pic-04"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The microprocessor fetches and executes the fourth instruction (
+\family typewriter
+Halt
+\family default
+) so that the microprocessor looks like Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:example-microprocessor-pic-05"
+plural "false"
+caps "false"
+noprefix "false"
+
+\end_inset
+
+.
+ Notice that now
+\end_layout
+
+\begin_layout Itemize
+the instruction register contains the current instruction (
+\family typewriter
+Halt
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+the program counter contains the address of the current instruction (
+\family typewriter
+4
+\family default
+)
+\end_layout
+
+\begin_layout Itemize
+register A still holds the data (
+\family typewriter
+30
+\family default
+) from the result of adding 10 and 20
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+Halt
+\family default
+ instruction tells the microprocessor to halt the program, which means that
+ it stops.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename basic-microprocessor-example-pic-05.PNG
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Microprocessor after the third instruction is executed
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:example-microprocessor-pic-05"
 
 \end_inset
 
