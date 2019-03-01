@@ -27,10 +27,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <Object Include="Irvine64.obj" />
-  </ItemGroup>
-  <ItemGroup>
-    <MASM Include="..\ch03\AddTwoSum_64.asm" />
+    <MASM Include="AddTwoSum_64.asm" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{08470669-26BF-400B-B1CF-50B7DFAC5697}</ProjectGuid>
