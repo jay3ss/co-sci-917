@@ -1,16 +1,19 @@
-Microsoft (R) Macro Assembler Version 14.16.27027.1	    02/27/19 14:45:59
-SubtractVariables.asm					     Page 1 - 1
+Microsoft (R) Macro Assembler Version 14.16.27027.1	    03/11/19 17:12:51
+..\assignment03\CopyStringBackwards.asm			     Page 1 - 1
 
 
 				; Joshua Saunders
 				; CO SCI 917
-				; SubtractVariables.asm
-				; Subtracting three integers.
-				;
+				; Assignment 3:
+				; CopyStringBackwards.asm
+				; 
 				; Prompt:
-				; Using the ADDSUB program from the section 3.2 as a reference, write a program
-				; that subtracts three integers only 16-bit registers.  Insert a cal DumpRegs
-				; statement to display the register values.
+				; Copy a String in Reverse Order Write a program with a loop and indirect
+				; addressing that copies a string from source to target, reversing the
+				; character order in the process. Use the following variables:
+				; 
+				; source BYTE "This is the source string",0
+				; target BYTE SIZEOF source DUP('#')
 
 				.386
 				.model flat,stdcall
@@ -38,31 +41,33 @@ c:\Irvine\SmallWin.inc(11) : warning A4011:multiple .MODEL directives found : .M
 			      C .LIST
 			      C 
 
+				; Data segment
  00000000			.data
- 00000000 2222			firstval    WORD   2222h
- 00000002 1111			secondval   WORD   1111h
- 00000004 0022			thirdval    WORD   0022h
- 00000006 0000			total       WORD   0
+ 00000000 54 68 69 73 20	source BYTE "This is the source string",0
+	   69 73 20 74 68
+	   65 20 73 6F 75
+	   72 63 65 20 73
+	   74 72 69 6E 67
+	   00
+ 0000001A  0000001A [		target BYTE SIZEOF source DUP('#')
+	    23
+	   ]
 
+				; Code segment
  00000000			.code
  00000000			main PROC
- 00000000  66| A1		    mov ax,firstval			
-	   00000000 R
- 00000006  66| 2B 05		    sub ax,secondval
-	   00000002 R
- 0000000D  66| 2B 05		    sub ax,thirdval
-	   00000004 R
- 00000014  66| A3		    mov total,ax
-	   00000006 R
+				    ; write code here
 
- 0000001A  E8 00000000 E	    call DumpRegs
+				    ; Write the string to the console window
+ 00000000  BA 00000000 R	    mov edx,OFFSET source
+ 00000005  E8 00000000 E	    call WriteString
 				    INVOKE ExitProcess,0
- 0000001F  6A 00	   *	    push   +000000000h
- 00000021  E8 00000000 E   *	    call   ExitProcess
- 00000026			main ENDP
+ 0000000A  6A 00	   *	    push   +000000000h
+ 0000000C  E8 00000000 E   *	    call   ExitProcess
+ 00000011			main ENDP
 				END main
-Microsoft (R) Macro Assembler Version 14.16.27027.1	    02/27/19 14:45:59
-SubtractVariables.asm					     Symbols 2 - 1
+Microsoft (R) Macro Assembler Version 14.16.27027.1	    03/11/19 17:12:51
+..\assignment03\CopyStringBackwards.asm			     Symbols 2 - 1
 
 
 
@@ -155,8 +160,8 @@ Segments and Groups:
 
 FLAT . . . . . . . . . . . . . .	GROUP
 STACK  . . . . . . . . . . . . .	32 Bit	 00001000 DWord	  Stack	  'STACK'	 
-_DATA  . . . . . . . . . . . . .	32 Bit	 00000008 DWord	  Public  'DATA'	
-_TEXT  . . . . . . . . . . . . .	32 Bit	 00000026 DWord	  Public  'CODE'	
+_DATA  . . . . . . . . . . . . .	32 Bit	 00000034 DWord	  Public  'DATA'	
+_TEXT  . . . . . . . . . . . . .	32 Bit	 00000011 DWord	  Public  'CODE'	
 
 
 Procedures, parameters, and locals:
@@ -263,7 +268,7 @@ WriteStackFrame  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External
 WriteString  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteToFile  . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
 WriteWindowsMsg  . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External STDCALL
-main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000026 Public STDCALL
+main . . . . . . . . . . . . . .	P Near	 00000000 _TEXT	Length= 00000011 Public STDCALL
 printf . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 scanf  . . . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
 wsprintfA  . . . . . . . . . . .	P Near	 00000000 FLAT	Length= 00000000 External C
@@ -487,7 +492,6 @@ blue . . . . . . . . . . . . . .	Number	 00000001h
 brown  . . . . . . . . . . . . .	Number	 00000006h   
 cyan . . . . . . . . . . . . . .	Number	 00000003h   
 exit . . . . . . . . . . . . . .	Text   	 INVOKE ExitProcess,0
-firstval . . . . . . . . . . . .	Word	 00000000 _DATA	
 gray . . . . . . . . . . . . . .	Number	 00000008h   
 green  . . . . . . . . . . . . .	Number	 00000002h   
 lightBlue  . . . . . . . . . . .	Number	 00000009h   
@@ -498,9 +502,8 @@ lightMagenta . . . . . . . . . .	Number	 0000000Dh
 lightRed . . . . . . . . . . . .	Number	 0000000Ch   
 magenta  . . . . . . . . . . . .	Number	 00000005h   
 red  . . . . . . . . . . . . . .	Number	 00000004h   
-secondval  . . . . . . . . . . .	Word	 00000002 _DATA	
-thirdval . . . . . . . . . . . .	Word	 00000004 _DATA	
-total  . . . . . . . . . . . . .	Word	 00000006 _DATA	
+source . . . . . . . . . . . . .	Byte	 00000000 _DATA	
+target . . . . . . . . . . . . .	Byte	 0000001A _DATA	
 white  . . . . . . . . . . . . .	Number	 0000000Fh   
 wsprintf . . . . . . . . . . . .	Text   	 wsprintfA
 yellow . . . . . . . . . . . . .	Number	 0000000Eh   

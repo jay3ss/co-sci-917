@@ -4,8 +4,8 @@
 ; Subtracting three integers.
 ;
 ; Prompt:
-; Using the ADDSUB program from the section 3.2 as a reference, write a program
-; that subtracts three integers only 16-bit registers.  Insert a cal DumpRegs
+; Using the ADDSUB program from section 3.2 as a reference, write a program
+; that subtracts three integers only 16-bit registers. Insert a cal DumpRegs
 ; statement to display the register values.
 
 .386
@@ -19,16 +19,15 @@ INCLUDE Irvine32.inc
 firstval    WORD   2222h
 secondval   WORD   1111h
 thirdval    WORD   0022h
-total       WORD   0
 
 .code
 main PROC
-    mov ax,firstval			
-    sub ax,secondval
-    sub ax,thirdval
-    mov total,ax
+    mov ax,firstval			; move firstval into the AX register
+    sub ax,secondval		; subtract secondval from AX and store result in AX
+    sub ax,thirdval			; subtract thirdval from AX and store result in AX
 
-    call DumpRegs
+    call DumpRegs			; the first 16 bits of the EAX register (AX) will
+							; show 10EFh
     INVOKE ExitProcess,0
 main ENDP
 END main
