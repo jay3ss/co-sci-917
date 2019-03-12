@@ -15,6 +15,6 @@ ExitProcess PROTO, dwExitCode:DWORD
 main PROC
     ; write code here
 
-    INOVKE ExitProcess,0
+    INVOKE ExitProcess,0
 main ENDP
 END main
