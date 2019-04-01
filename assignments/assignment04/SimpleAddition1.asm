@@ -20,11 +20,31 @@ INCLUDE Irvine32.inc
 .data
 integer1 DWORD ?
 integer2 DWORD ?
+sum      DWORD 0
 
 
 ; Code segment
 .code
 main PROC
-    
+    ; clear the screen
+    call Clrscr
+
+    ; PSEUDOCODE:
+    ;   find center of screen
+    ;   1. maxX, maxY = GetMaxXY
+    ;   2. centerX = maxX / 2
+    ;      centerY = maxY / 2
+    ;   move cursor to center of screen
+    ;   3. cursor->x = centerX
+    ;      cursor->y = centerY
+    ;   prompt user for two integers
+    ;   4. print("Enter an integer")
+    ;   5. integer1 = input()
+    ;   6. print("Enter another integer")
+    ;   7. integer2 = input()
+    ;   add the two integers
+    ;   8. sum = integer1 + integer2
+    ;   display the sum of the two integers
+    ;   9. print(f"The sum of {integer1} and {integer2} is {sum}")
 main ENDP
 END main
