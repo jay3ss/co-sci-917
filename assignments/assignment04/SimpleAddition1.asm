@@ -18,10 +18,19 @@ INCLUDE Irvine32.inc
 
 ; Data segment
 .data
-integer1 DWORD ?
-integer2 DWORD ?
-sum      DWORD 0
+integer1 DWORD ?    ; user input 1
+integer2 DWORD ?    ; user input 2
+sum      DWORD 0    ; to hold the addition of user inputs
 
+; cursor- and screen-related variables
+rows    BYTE ?      ; number of rows of screen
+cols    BYTE ?      ; number of columns of screen
+centerX BYTE ?      ; x-coordinate of center of screen
+centerY BYTE ?      ; y-coordinate of center of screen
+
+; printing-related variables
+prompt  BYTE "Enter an integer: ",0
+results BYTE "The sum of the two numbers is ",0
 
 ; Code segment
 .code
@@ -46,5 +55,7 @@ main PROC
     ;   8. sum = integer1 + integer2
     ;   display the sum of the two integers
     ;   9. print(f"The sum of {integer1} and {integer2} is {sum}")
+
+    call WaitMsg
 main ENDP
 END main
