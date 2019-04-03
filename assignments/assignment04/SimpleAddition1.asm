@@ -96,7 +96,7 @@ GetScreenCenter PROC uses eax
 
 	; find the size of the screen buffer
 	; - AX: number of rows
-	; - DL: number of columns
+	; - DX: number of columns
 	CALL GetMaxXY
 	shr al,1			; divide by 2 to get center
 	shr dl,1
