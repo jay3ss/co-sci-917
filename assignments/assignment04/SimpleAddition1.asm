@@ -25,8 +25,6 @@ sum      DWORD 0    ; to hold the addition of user inputs
 ; cursor- and screen-related variables
 rows    BYTE ?      ; number of rows of screen
 cols    BYTE ?      ; number of columns of screen
-centerX BYTE ?      ; x-coordinate of center of screen
-centerY BYTE ?      ; y-coordinate of center of screen
 
 ; printing-related variables
 prompt  BYTE "Enter an integer: ",0
@@ -38,54 +36,72 @@ main PROC
     ; clear the screen
     call Clrscr
 
-    ; PSEUDOCODE:
-    ;   find center of screen
-    ;   1. maxX, maxY = GetMaxXY
-    ;   2. centerX = maxX / 2
-    ;      centerY = maxY / 2
-    call GetMaxXY
-    dec  dl         ; highest column number = X-1
-    dec  dh         ; highest row number = Y-1
-	; Divide each register by 2 (shift right, or left?) to get
-	; the center coordinate
-    shr dl,1        ; x-coordinate of screen center
-    shr dh,1        ; y-coordinate of screen center
-    call Gotoxy     ; position the cursor at the center of the screen
-    ;   move cursor to center of screen
-    ;   3. cursor->x = centerX
-    ;      cursor->y = centerY
-
+    ; Get the center of the screen and print a prompt
+    ; for the user to enter an integer
+	call GetScreenCenter		; (DH, DL) = (x-coord, y-coord)
+	mov rows,dh
+	mov cols,dl
+	call Gotoxy
     ; Prompt the user to enter an integer
     mov edx,OFFSET prompt
     call WriteString
     call ReadInt
-    mov integer1,eax        ; save the integer into integer1
+    mov integer1,eax
 
-    ; Prompt the uesr to enter another integer
+	inc rows                	; go to the next row
+	mov dh,rows
+	mov dl,cols
 	call Gotoxy
+    ; Prompt the user to enter an integer
+    mov edx,OFFSET prompt
     call WriteString
     call ReadInt
-    mov integer2,eax        ; save the integer into integer2
-
-    ; add the two integers
-    mov eax,0
-    add eax,integer1
-    add eax,integer2
     
-    ; Display the sum of the two integers
-	call Gotoxy
+    ; Add the two numbers. EAX is currently holding one of the
+    ; user's numbers so we only need to add the first to EAX
+    ; mov eax,integer1
+    add eax,integer1
+    ; Display the results
+    inc rows
+	mov dh,rows
+	mov dl,cols
+    call Gotoxy
     mov edx,OFFSET results
     call WriteString
     call WriteInt
 
-    
     ; Display "Press any key to continue..." so that
     ; we can see what the program did before it
     ; closes
 	call Crlf
+	inc rows
+	mov dh,rows
+	mov dl,cols
+    call Gotoxy
     call WaitMsg
     call Clrscr
 
     exit
 main ENDP
+
+;---------------------------------------------------------
+; GetScreenCenter
+; Finds the center of the screen buffer
+; Receives: None
+; Returns: (DH, DL) = (x-coord, y-coord)
+;---------------------------------------------------------
+GetScreenCenter PROC uses eax
+	mov eax,0			; clear EAX & EDX
+	mov edx,0
+
+	; find the size of the screen buffer
+	; - AX: number of rows
+	; - DL: number of columns
+	CALL GetMaxXY
+	shr al,1			; divide by 2 to get center
+	shr dl,1
+	mov dh,al			; move DH = (num of rows) / 2
+
+	ret					; cooridnates are in EDX
+GetScreenCenter ENDP
 END main
