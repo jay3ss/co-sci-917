@@ -18,17 +18,17 @@ INCLUDE Irvine32.inc
 
 ; Data segment
 .data
-integer1 DWORD ?    ; user input 1
-integer2 DWORD ?    ; user input 2
-sum      DWORD 0    ; to hold the addition of user inputs
+sum             DWORD 0 ; holds the sum of user-inputted ints
+inputloopnum    DWORD 2 ; number of times to loop getting user input
 
-; cursor- and screen-related variables
-rows    BYTE ?      ; number of rows of screen
-cols    BYTE ?      ; number of columns of screen
 
-; printing-related variables
-prompt  BYTE "Enter an integer: ",0
-results BYTE "The sum of the two numbers is ",0
+; Cursor- and screen-related variables
+rows            BYTE ? ; number of rows of screen
+cols            BYTE ? ; number of columns of screen
+
+; Printing-related variables
+prompt          BYTE "Enter an integer: ",0
+results         BYTE "The sum of the two numbers is ",0
 
 ; Code segment
 .code
@@ -41,46 +41,49 @@ main PROC
 	call GetScreenCenter		; (DH, DL) = (x-coord, y-coord)
 	mov rows,dh
 	mov cols,dl
-	call Gotoxy
-    ; Prompt the user to enter an integer
-    mov edx,OFFSET prompt
-    call WriteString
-    call ReadInt
-    mov integer1,eax
+    ; Push the ECX (counter) to the stack so that we
+    ; can keep track of how many times the main loop
+    ; has run
+    push ecx
+    mov ecx,inputloopnum
 
-	inc rows                	; go to the next row
-	mov dh,rows
-	mov dl,cols
+    ; This loop handles getting input from the
+    ; user. This occurs inputloopnum times
+GETINTLOOP:
 	call Gotoxy
     ; Prompt the user to enter an integer
     mov edx,OFFSET prompt
-    call WriteString
-    call ReadInt
-    
-    ; Add the two numbers. EAX is currently holding one of the
-    ; user's numbers so we only need to add the first to EAX
-    ; mov eax,integer1
-    add eax,integer1
-    ; Display the results
-    inc rows
-	mov dh,rows
-	mov dl,cols
+    call PromptAndGetInt
+    add sum,eax
+
+	inc rows                	; increase row
+    ; move rows and cols to EDX so that the prompt can be
+    ; printed at the correct location
+    mov dh,rows
+    mov dl,cols
+    loop GETINTLOOP             ; end GETINTLOOP
+
     call Gotoxy
+    ; print the results
     mov edx,OFFSET results
     call WriteString
-    call WriteInt
 
+    ; move sum into EAX so that we can print it
+    mov eax,sum
+    call WriteInt
+    call Crlf               ; newline
+    
     ; Display "Press any key to continue..." so that
     ; we can see what the program did before it
-    ; closes
-	call Crlf
-	inc rows
-	mov dh,rows
-	mov dl,cols
+    ; starts over
+    inc rows
+    mov dh,rows
+    mov dl,cols
     call Gotoxy
     call WaitMsg
-    call Clrscr
 
+    ; Clear the screen and exit
+    call Clrscr
     exit
 main ENDP
 
@@ -91,9 +94,6 @@ main ENDP
 ; Returns: (DH, DL) = (x-coord, y-coord)
 ;---------------------------------------------------------
 GetScreenCenter PROC uses eax
-	mov eax,0			; clear EAX & EDX
-	mov edx,0
-
 	; find the size of the screen buffer
 	; - AX: number of rows
 	; - DX: number of columns
@@ -104,4 +104,33 @@ GetScreenCenter PROC uses eax
 
 	ret					; cooridnates are in EDX
 GetScreenCenter ENDP
+
+;---------------------------------------------------------
+; PromptAndGetInt
+; Prompts the user for input and returns the input
+; Receives: EDX = the prompt (array) offset
+; Returns: EAX = the integer entered by the user
+;---------------------------------------------------------
+PromptAndGetInt PROC
+    ; The prompt for the string needs to be
+    ; in EDX before calling this procedure
+    call WriteString
+    call ReadInt
+
+    ret
+PromptAndGetInt ENDP
+
+;---------------------------------------------------------
+; OffsetWaitMsg
+; Prints the wait message using an offset
+; Receives: EDX = the location where the message should 
+;                 be printed
+; Returns: EAX = None
+;---------------------------------------------------------
+OffsetWaitMsg PROC
+    call Gotoxy
+    call WaitMsg
+
+    ret
+OffsetWaitMsg ENDP
 END main
