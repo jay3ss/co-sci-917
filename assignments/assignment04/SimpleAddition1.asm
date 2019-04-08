@@ -50,18 +50,18 @@ main PROC
     ; This loop handles getting input from the
     ; user. This occurs inputloopnum times
 GETINTLOOP:
-        call Gotoxy
-        ; Prompt the user to enter an integer
-        mov edx,OFFSET prompt
-        call PromptAndGetInt
-        add sum,eax
+	call Gotoxy
+    ; Prompt the user to enter an integer
+    mov edx,OFFSET prompt
+    call PromptAndGetInt
+    add sum,eax
 
-        inc rows                	; increase row
-        ; move rows and cols to EDX so that the prompt can be
-        ; printed at the correct location
-        mov dh,rows
-        mov dl,cols
-        loop GETINTLOOP             ; end GETINTLOOP
+	inc rows                	; increase row
+    ; move rows and cols to EDX so that the prompt can be
+    ; printed at the correct location
+    mov dh,rows
+    mov dl,cols
+    loop GETINTLOOP             ; end GETINTLOOP
 
     call Gotoxy
     ; print the results
