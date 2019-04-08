@@ -87,9 +87,6 @@ MAINLOOP:
     ; Display "Press any key to continue..." so that
     ; we can see what the program did before it
     ; starts over
-    ; inc rows
-    ; mov dh,rows
-    ; mov dl,cols
     call WaitMsg
 
     ; clear sum so that we start fresh
@@ -133,18 +130,4 @@ PromptAndGetInt PROC
 
     ret
 PromptAndGetInt ENDP
-
-;---------------------------------------------------------
-; OffsetWaitMsg
-; Prints the wait message using an offset
-; Receives: EDX = the location where the message should
-;                 be printed
-; Returns: EAX = None
-;---------------------------------------------------------
-OffsetWaitMsg PROC
-    call Gotoxy
-    call WaitMsg
-
-    ret
-OffsetWaitMsg ENDP
 END main

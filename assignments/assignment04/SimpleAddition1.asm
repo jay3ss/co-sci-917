@@ -119,18 +119,4 @@ PromptAndGetInt PROC
 
     ret
 PromptAndGetInt ENDP
-
-;---------------------------------------------------------
-; OffsetWaitMsg
-; Prints the wait message using an offset
-; Receives: EDX = the location where the message should 
-;                 be printed
-; Returns: EAX = None
-;---------------------------------------------------------
-OffsetWaitMsg PROC
-    call Gotoxy
-    call WaitMsg
-
-    ret
-OffsetWaitMsg ENDP
 END main
