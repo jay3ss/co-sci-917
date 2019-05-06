@@ -40,10 +40,11 @@ XOR_BIT_MASK DWORD  0FFFFFFFFh
 ; Code segment
 .code
 main PROC
-    mov eax, -23
-	call WriteInt
-    call AbsVal
-	call Crlf
+    mov eax,5
+    mov ebx,3
+    ; call GCD
+    call Modulo
+    mov eax,ebx
     call WriteInt
 	exit
 main ENDP
@@ -52,7 +53,7 @@ main ENDP
 AbsVal PROC
 ; Calculates the absolute value of a signed integer
 ; Receives: EAX = the number
-; Returns: EAX = abs(the number)
+; Returns: EAX = absolute value of the number
 ;---------------------------------------------------------
     ; 1. Add -1 to the number
     ; 2. Form one's complement
@@ -61,4 +62,20 @@ AbsVal PROC
 	ret
 AbsVal ENDP
 
+
+;---------------------------------------------------------
+Modulo PROC uses EDX ECX
+; Calculates the modulo of two numbers according to the
+;   the formula n = x % y
+; Receives: EAX = the first number (x)
+;           EBX = the second number (y)
+; Returns: EBX = the modulo (n) of x and y
+;---------------------------------------------------------
+	mov edx,0
+	push eax	; eax gets overwritten during division, so copy it
+    div ebx
+    mov ebx,edx
+	pop eax
+    ret
+Modulo ENDP
 END main
