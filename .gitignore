@@ -23,5 +23,11 @@ downloads/Irvine/
 presentations/
 downloads/
 
+<<<<<<< HEAD
 # Ignore VS Code config folder
 .vscode
+=======
+# Ignore VS Code settings
+.vscode
+
+>>>>>>> assignment05
