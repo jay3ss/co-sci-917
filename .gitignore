@@ -22,3 +22,6 @@ downloads/Irvine/
 # Ignore any downloaded presentations & files
 presentations/
 downloads/
+
+# Ignore VS Code config folder
+.vscode
