@@ -35,10 +35,30 @@ INCLUDE Irvine32.inc
 
 ; Data segment
 .data
+XOR_BIT_MASK DWORD  0FFFFFFFFh
 
 ; Code segment
 .code
 main PROC
-
+    mov eax, -23
+	call WriteInt
+    call AbsVal
+	call Crlf
+    call WriteInt
+	exit
 main ENDP
+
+;---------------------------------------------------------
+AbsVal PROC
+; Calculates the absolute value of a signed integer
+; Receives: EAX = the number
+; Returns: EAX = abs(the number)
+;---------------------------------------------------------
+    ; 1. Add -1 to the number
+    ; 2. Form one's complement
+    add eax,-1
+    xor eax,XOR_BIT_MASK
+	ret
+AbsVal ENDP
+
 END main
