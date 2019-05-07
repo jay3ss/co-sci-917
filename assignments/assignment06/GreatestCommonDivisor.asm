@@ -64,13 +64,14 @@ AbsVal ENDP
 
 
 ;---------------------------------------------------------
-Modulo PROC uses EDX ECX
+Modulo PROC uses ECX
 ; Calculates the modulo of two numbers according to the
 ;   the formula n = x % y
 ; Receives: EAX = the first number (x)
-;           EBX = the second number (y)
+;           EDX = the second number (y)
 ; Returns: EBX = the modulo (n) of x and y
 ;---------------------------------------------------------
+    mov ecx,edx
 	mov edx,0
 	push eax	; eax gets overwritten during division, so copy it
     div ebx
