@@ -36,6 +36,7 @@ INCLUDE Irvine32.inc
 ; Data segment
 .data
 ABS_VAL_BIT_MASK DWORD  0FFFFFFFFh
+NEG_VAL_BIT_MASK DWORD 080000000h
 
 ; To hold the numerical values entered by the user
 intX    DWORD ?
@@ -77,14 +78,19 @@ main PROC
 main ENDP
 
 ;---------------------------------------------------------
-AbsVal PROC
+AbsVal PROC USES edx
 ; Calculates the absolute value of a signed integer
 ; Receives: EAX = the number
 ; Returns: EAX = absolute value of the number
 ;---------------------------------------------------------
-    ; 1. Add -1 to the number
-    ; 2. Form one's complement
-	.IF (eax < 0)
+    ; 1. Apply a bit mask of all 0s except for the MSB as 1
+    ;    to get the MSB of the number in EAX
+    ; 2. If negative
+    ;   1. Add -1 to the number
+    ;   2. Form one's complement
+    mov edx,eax
+    and edx,NEG_VAL_BIT_MASK
+	.IF (edx > 0)
 		add eax,-1
 		xor eax,ABS_VAL_BIT_MASK
 	.ENDIF
