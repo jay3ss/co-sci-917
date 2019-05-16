@@ -36,6 +36,10 @@ INCLUDE Irvine32.inc
 
 ; Data segment
 .data
+array1 DWORD 15, 37, -1, 23, 14, 37, 42, 123, 456
+sizeArr1 DWORD LENGTHOF array1
+array2 DWORD 37, 19, 24, 23
+sizeArr2 DWORD LENGTHOF array2
 
 ; Code segment
 .code
