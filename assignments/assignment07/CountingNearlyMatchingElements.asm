@@ -36,9 +36,13 @@ INCLUDE Irvine32.inc
 ; Data segment
 .data
 ; Arrays to compare
-array1 SDWORD -1, 30, 37, -1, 23, 14, 37, 42, 123, 456, -50
-array2 SDWORD 1, 37, 19, 24, 23, 14, 33, 91, 13, 4, 50
-difference DWORD 10
+array1a SDWORD -1, 30, 37, -1, 23, 14, 37, 42, 123, 456, -50
+array1b SDWORD 1, 37, 19, 24, 23, 14, 33, 91, 13, 4, 50
+difference1 DWORD 10
+
+array2a SDWORD 420, 27, 37, 19, 52, -63
+array2b SDWORD 240, -33, -22, 28, 51, -61
+difference2 DWORD 3
 
 ; Output string
 outputStr BYTE "Number of near matches: ",0
@@ -50,12 +54,26 @@ NEG_VAL_BIT_MASK DWORD 080000000h
 ; Code segment
 .code
 main PROC
+	; Find the near matches for the first set of arrays
     mov eax,0
     INVOKE CountNearMatches,
-        ADDR array1,
-        ADDR array2,
-        LENGTHOF array1,
-        difference
+        ADDR array1a,
+        ADDR array1b,
+        LENGTHOF array1a,
+        difference1
+
+    mov edx,OFFSET outputStr
+    call WriteString
+    call WriteInt
+    call Crlf
+
+	; Find the near matches for the second set of arrays
+	mov eax,0
+    INVOKE CountNearMatches,
+        ADDR array2a,
+        ADDR array2b,
+        LENGTHOF array2a,
+        difference2
 
     mov edx,OFFSET outputStr
     call WriteString
@@ -86,8 +104,8 @@ CountNearMatches PROC USES edi esi edx,
     mov esi,secondArr   ; location of the second array
 
     .WHILE (count > 0)
-        ; find the absolute value of the two elements and if it's less than the
-        ; maximum allowable difference, then they are near matches
+        ; find the absolute value of the two elements and if it's less than
+		; or equal to the maximum allowable difference, then they are near matches
         mov edx,[edi]
         sub edx,[esi]
         call AbsVal
