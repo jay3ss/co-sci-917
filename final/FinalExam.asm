@@ -25,7 +25,11 @@ ExitProcess PROTO, dwExitCode:DWORD
 CountWords PROTO,
     sentence:PTR BYTE,
     numChars:DWORD
-SwitchCase PROTO, letter:BYTE
+InvertSentenceCase PROTO,
+    sentence1:PTR BYTE,
+    sentence2:PTR BYTE
+InvertLetterCase PROTO
+IsSpaceOrPunct PROTO
 
 BUFF_MAX = 128      ; the maximum buffer size
 
@@ -42,13 +46,30 @@ inverted  BYTE BUFF_MAX + 1 DUP(0) ; input string with case reversed
 numWords  BYTE 0
 
 ; Messages
+ENTER_STR_PROMPT  BYTE "Please enter a string: ",0
 NUM_WORDS_MSG     BYTE "The number of words in the input string is: ",0
 OUTPUT_STRING_MSG BYTE "The output string is: ",0
+
+; Bit mask for case inversion
+CASE_INV_BIT_MASK DWORD 00100000b
 
 ; Code segment
 .code
 main PROC
+	mov edx, OFFSET ENTER_STR_PROMPT
+    call WriteString
+    mov ecx, BUFF_MAX
+    mov edx, OFFSET inputStr
+    call ReadString
+    mov inputSize, eax
 
+	mov edx, OFFSET NUM_WORDS_MSG
+    call WriteString
+
+    mov ebx, inputStr
+    call InvertLetterCase
+    call WriteString
+    ; call WriteInt
     call Crlf
 	exit
 main ENDP
@@ -58,19 +79,19 @@ CountWords PROC USES edi ebx ecx edx,
     sentence:PTR BYTE,
     numChars:DWORD,
 ; Counts the number of words in a sentence
-; Receives: sentence: The sentence to count
+; Receives: sentence: The sentence to count the number of words
 ;           numChars: The number of characters in the sentence
 ; Returns: EAX = The number of words in the sentence
 ;------------------------------------------------------------------------------
     mov eax,0
     ; There are no words if the string has a length of zero
-    .IF(count > 0)
+    .IF(numChars > 0)
         mov edi,sentence
         mov ebx,0   ; is current character a space or punctuation?
         mov ecx,0   ; is previous character a space or punctuation?
         .WHILE(numChars > 0)
             mov ebx,[edi]
-            call isSpaceOrPunct
+            ;call IsSpaceOrPunct
             .IF(ebx == 1 && ecx == 0) ; don't double count words
                 inc eax
             .ELSE
@@ -86,7 +107,20 @@ CountWords PROC USES edi ebx ecx edx,
 CountWords ENDP
 
 ;------------------------------------------------------------------------------
-isSpaceOrPunct PROC, c:BYTE
+InvertLetterCase PROC USES ebx
+; Inverts the case of a letter. I.e., an uppercase letter is converted to a
+; lowercase one and vice versa.
+; Receives: EAX: The letter to invert
+; Returns: EAX: The letter with the inverted case
+;------------------------------------------------------------------------------
+    call IsSpaceOrPunct
+    .IF(ebx == 1)
+        xor eax, CASE_INV_BIT_MASK
+    .ENDIF
+    ret
+InvertLetterCase ENDP
+;------------------------------------------------------------------------------
+IsSpaceOrPunct PROC
 ; Determines if a character is in the the following set of characters
 ;    {' ', ',', '.', '!', '?', ';'}
 ; which are space and some punctuation characters. Will destroy the Zero flag
@@ -94,11 +128,11 @@ isSpaceOrPunct PROC, c:BYTE
 ; Returns: EBX: 1 if the character is a space or punctuation mark, 0 otherwise
 ;------------------------------------------------------------------------------
     ; Note that 59 is the semicolon ASCII value
-    .IF(c == " " || c == "," || c == "." || c == "!" || c == "?" || c == 59)
+    .IF(ebx == " " || ebx == "," || ebx == "." || ebx == "!" || ebx == "?" || ebx == 59)
         mov ebx,1
     .ELSE
         mov ebx,0
     .ENDIF
     ret
-isSpaceOrPunct ENDP
+IsSpaceOrPunct ENDP
 END main
